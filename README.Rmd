@@ -5,9 +5,10 @@ output: md_document
 
 <center><img src="images/auth-steps.png" , width="800px"/></center>
 
-
+<br/>
 
 ```{r, eval=FALSE}
+
 library(jsonlite)
 library(plumber)
 library(httr)
@@ -61,6 +62,11 @@ identify_user <- function(req, code=""){
 ### Plumber script
 
 ```{r, eval=FALSE}
+
+#---- sample_plumber.R ----
+
+library(plumber)
+
 #* @get /login
 function(req, code=""){
   user <- identify_user(req, code)
@@ -77,8 +83,9 @@ function(req){
 ### Server script
 
 ```{r, eval=FALSE}
+
 library(plumber)
-library(plumber)
+
 r <- plumb("sample_plumber.R") 
 r$addGlobalProcessor(sessionCookie("secret", "token"))
 r$addGlobalProcessor(sessionCookie("secret", "email"))

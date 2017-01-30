@@ -1,6 +1,8 @@
 <center>
 <img src="images/auth-steps.png" , width="800px"/>
 </center>
+<br/>
+
     library(jsonlite)
     library(plumber)
     library(httr)
@@ -52,6 +54,10 @@ Sample Code
 
 ### Plumber script
 
+    #---- sample_plumber.R ----
+
+    library(plumber)
+
     #* @get /login
     function(req, code=""){
       user <- identify_user(req, code)
@@ -67,7 +73,7 @@ Sample Code
 ### Server script
 
     library(plumber)
-    library(plumber)
+
     r <- plumb("sample_plumber.R") 
     r$addGlobalProcessor(sessionCookie("secret", "token"))
     r$addGlobalProcessor(sessionCookie("secret", "email"))
